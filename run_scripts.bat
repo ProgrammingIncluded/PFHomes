@@ -1,3 +1,5 @@
+@ECHO OFF
+
 REM Update Code
 git pull origin master
 

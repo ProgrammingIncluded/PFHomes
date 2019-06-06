@@ -62,19 +62,30 @@ def send_mail(fromaddr, toaddr, password, subject, body, file_name):
 
 
 def main():
-    if len(sys.argv) < 3:
-        print("Please provide mail address and password.")
-        return
+    fromaddr, toaddr, password = "","",""
+    if len(sys.argv) >= 3:
+      fromaddr = sys.argv[1]
+      toaddr = sys.argv[1]
+      password = sys.argv[2]
+    elif os.path.exists("email.dat"):
+      data = np.genfromtxt("email.dat", dtype="str")
+      fromaddr = data[0]
+      toaddr = data[0]
+      password = data[1]
+    else:
+      print("Give email and password")
+      exit()
 
-    fromaddr = sys.argv[1]
-    toaddr = sys.argv[1]
-
-    # Get the password
-    password = sys.argv[2]
     subject = "Home Report"
-    body = "Hello Ivan, \n Here are your results:\n"
+    body = "Hello Ivan, \nHere are your results:\n\n"
 
-    results = np.genfromtxt("site_full.txt", dtype="str")
+    results_prelim = np.genfromtxt("results.txt", dtype="str")
+    # Remove false results
+    results = []
+    for r in results_prelim:
+      if r[1] == "True":
+        results.append(r)
+        
     # Append files and results
     for i in results:
         body += i[0] + " " + i[1] + "\n\n"

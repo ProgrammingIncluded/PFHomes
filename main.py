@@ -17,7 +17,7 @@ def main():
     # Read form our list of sites
     sites = np.genfromtxt("site_full.txt", dtype="str")
     bot = Crawler(bm.BaseModel(), SKIP)
-    # bot.downloadHTML(sites)
+    bot.downloadHTML(sites)
     results = bot.parseCache("cache")
 
     # Output results

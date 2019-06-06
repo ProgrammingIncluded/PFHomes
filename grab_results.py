@@ -7,7 +7,6 @@
 # Grab a list of files and save them to a txt
 
 import numpy as np
-import googlesearch as glg
 import sys
 from bs4 import BeautifulSoup
 import urllib.parse as urllib
@@ -15,6 +14,7 @@ import urllib.request as urllib2
 import traceback
 import random
 import time
+import os
 
 RESULTS = []
 
@@ -58,11 +58,16 @@ def search_google(query):
 def main():
     # print(bs.scrape("test").text())
 
-    if len(sys.argv) <= 1:
+    query = ""
+    if len(sys.argv) > 1:
+        query = sys.argv[1]
+    elif os.path.exists("address.dat"):
+        data = np.genfromtxt("address.dat", dtype="str")
+        query = " ".join(data)
+    else:
         print("Requires an address as input to script")
         exit()
-    
-    query = sys.argv[1]
+
 
     try:
         search_bing(query, 50)

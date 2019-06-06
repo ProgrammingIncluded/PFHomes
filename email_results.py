@@ -63,15 +63,15 @@ def send_mail(fromaddr, toaddr, password, subject, body, file_name):
 
 def main():
     fromaddr, toaddr, password = "","",""
-    if len(sys.argv) >= 3:
+    if len(sys.argv) >= 4:
       fromaddr = sys.argv[1]
-      toaddr = sys.argv[1]
-      password = sys.argv[2]
+      toaddr = sys.argv[2]
+      password = sys.argv[3]
     elif os.path.exists("email.dat"):
       data = np.genfromtxt("email.dat", dtype="str")
       fromaddr = data[0]
-      toaddr = data[0]
-      password = data[1]
+      toaddr = data[1]
+      password = data[2]
     else:
       print("Give email and password")
       exit()

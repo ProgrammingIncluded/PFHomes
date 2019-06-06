@@ -8,6 +8,7 @@
 
 import numpy as np
 import googlesearch as glg
+import sys
 from bs4 import BeautifulSoup
 import urllib.parse as urllib
 import urllib.request as urllib2
@@ -42,6 +43,8 @@ def search_bing(query, iter):
         # Cooldown
         time.sleep(random.randint(10, 50))
 
+# Deprecated
+''' 
 def search_google(query):
     for url in glg.search(query, stop=5000, pause=2):
         global RESULTS
@@ -50,11 +53,16 @@ def search_google(query):
         RESULTS.append(url)
         if len(results) % 9 == 0:
             time.sleep(random.randint(10, 100))
+'''
 
 def main():
     # print(bs.scrape("test").text())
 
-    query = "address here"
+    if len(sys.argv) <= 1:
+        print("Requires an address as input to script")
+        exit()
+    
+    query = sys.argv[1]
 
     try:
         search_bing(query, 50)

@@ -1,3 +1,15 @@
+# Custom Ignores
+*.txt
+*.log
+*.google-cookie
+
+# ignore these folders
+fraud_sites/*
+test/*
+cache/*
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

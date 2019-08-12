@@ -1,14 +1,19 @@
-@ECHO OFF
+echo "***LOGGER***" 
+python log_archiver.py
 
 REM Update Code
-git pull origin master
+echo "***UPDATE***"  >> RESULTS.log 2>&1
+git pull origin master >> RESULTS.log 2>&1
 
 REM Scrape Bing
-python grab_results.py
+echo "***GRAB***"  >> RESULTS.log 2>&1
+python grab_results.py >> RESULTS.log 2>&1
 
 REM Run the Crawler to get Site Data
 REM Run ML learning and generate a list of potential websites then email.
-python main.py
+echo "***MAIN***"  >> RESULTS.log 2>&1
+python main.py >> RESULTS.log 2>&1
 
 REM Allows us to email ourselves the results from results.txt
-python email_results.py
+echo "***EMAIL***"  >> RESULTS.log 2>&1
+python email_results.py >> RESULTS.log 2>&1
